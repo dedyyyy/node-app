@@ -5,7 +5,7 @@ pipeline {
             steps{
                 script{
                     def tag = latestCommitHash()
-                    sh "docker build . -t kammana/nodeapp:${tag} "
+                    sh "docker build . -t dedyyyy/nodeapp:${tag} "
                 }
                 
             }
@@ -14,10 +14,10 @@ pipeline {
         stage('Push DockerHub'){
             steps{
                 withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerHubPwd')]) {
-                    sh "docker login -u kammana -p ${dockerHubPwd}"
+                    sh "docker login -u dedyyyy -p ${dockerHubPwd}"
                     script{
                         def tag = latestCommitHash()
-                        sh "docker push kammana/nodeapp:${tag}"
+                        sh "docker push dedyyyy/nodeapp:${tag}"
                     }
                 }
             }
